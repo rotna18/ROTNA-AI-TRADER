@@ -19,7 +19,7 @@ class MainActivity : Activity() {
         val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(28, 36, 28, 24); gravity = Gravity.CENTER_HORIZONTAL }
         root.addView(TextView(this).apply { text = "ROTNA AI TRADER"; textSize = 25f; setTextColor(0xFF12345A.toInt()) })
         root.addView(TextView(this).apply { text = "Quotex chart visual helper • Manual trading only"; textSize = 14f; setPadding(0, 8, 0, 22) })
-        keyInput = EditText(this).apply { hint = "Gemini API key"; singleLine = true; inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD; setText(prefs.getString("gemini_key", "") ?: "") }
+        keyInput = EditText(this).apply { hint = "Gemini API key"; setSingleLine(true); inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD; setText(prefs.getString("gemini_key", "") ?: "") }
         root.addView(keyInput, LinearLayout.LayoutParams(-1, -2))
         root.addView(TextView(this).apply { text = "API key is stored on this device. Never share it. For a public app release, move API calls to your own secure backend."; textSize = 12f; setPadding(0, 6, 0, 18) })
         root.addView(Button(this).apply { text = "SAVE API KEY"; setOnClickListener { prefs.edit().putString("gemini_key", keyInput.text.toString().trim()).apply(); Toast.makeText(this@MainActivity, "Saved on this device", Toast.LENGTH_SHORT).show() } }, LinearLayout.LayoutParams(-1, -2))
